@@ -107,9 +107,9 @@ class Editor {
     public void print() throws Exception{
         writer= new FileWriter("randomtext.txt");
         for(String i:l) {
-            writer.write(i.toString());
+            writer.write(i);
             System.out.print(i);
-            if(!i.toString().equals("\n")) {
+            if(!i.equals("\n")) {
                 writer.write(" ");
                 System.out.print(" ");
             }
