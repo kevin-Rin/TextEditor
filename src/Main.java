@@ -45,7 +45,7 @@ class Editor {
     LinkedList<String> l;
     int node,position;
     FileWriter writer;
-    public Editor(LinkedList<StringBuilder> l) {
+    public Editor(LinkedList<String> l) {
         this.l=l;
         node=position=0;
     }
