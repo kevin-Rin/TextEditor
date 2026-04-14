@@ -4,13 +4,13 @@ class Main {
     public static void main(String[] args) throws Exception{
         File file=new File("randomtext.txt");
         Scanner sc=new Scanner(file);
-        LinkedList<StringBuilder> l=new LinkedList<StringBuilder>();
+        LinkedList<String> l=new LinkedList<String>();
         while(sc.hasNextLine()) {
             String line=sc.nextLine();
             String[] words=line.split("\\s");
             for(String i:words) 
-                l.add(new StringBuilder(i));
-            l.add(new StringBuilder("\n"));
+                l.add(i);
+            l.add("\n");
         }
         Editor edit=new Editor(l);
         sc=new Scanner(System.in);
@@ -42,7 +42,7 @@ class Main {
     }
 }
 class Editor {
-    LinkedList<StringBuilder> l;
+    LinkedList<String> l;
     int node,position;
     FileWriter writer;
     public Editor(LinkedList<StringBuilder> l) {
@@ -50,7 +50,7 @@ class Editor {
         node=position=0;
     }
     public void forward(){
-        StringBuilder s=l.get(node);
+        String s=l.get(node);
         if(position==s.length()) {
             if(node==l.size()-1) node=0;
             else node++;
@@ -61,7 +61,7 @@ class Editor {
         if(s.toString().equals("\n")) forward();
     }
     public void backward(){
-        StringBuilder s=l.get(node);
+        String s=l.get(node);
         if(position==0) {
             if(node==0) node=l.size()-1;
             else node--;
@@ -73,15 +73,15 @@ class Editor {
         if(s.toString().equals("\n")) backward();
     }
     public void insert(String input) {
-        StringBuilder s=l.get(node);
+        String s=l.get(node);
         if(s.length()==0) s.append(input);
         else s.insert(position,input);
         position+=input.length();
     }
     public void delete() {
-        StringBuilder s=l.get(node);
+        String s=l.get(node);
         if(position==0 && node>0){
-            StringBuilder prev=l.get(node-1);
+            String prev=l.get(node-1);
             position=prev.length();
             prev.append(s);
             l.remove(node);
@@ -103,7 +103,7 @@ class Editor {
     }
     public void print() throws Exception{
         writer= new FileWriter("randomtext.txt");
-        for(StringBuilder i:l) {
+        for(String i:l) {
             writer.write(i.toString());
             System.out.print(i);
             if(!i.toString().equals("\n")) {
@@ -114,7 +114,7 @@ class Editor {
     }
     public void printCursor() {
         System.out.print("Cursor At : ");
-        StringBuilder s=l.get(node);
+        String s=l.get(node);
         for(int i=0; i<s.length(); i++) {
             if(i==position) System.out.print("|");
             System.out.print(s.charAt(i));
