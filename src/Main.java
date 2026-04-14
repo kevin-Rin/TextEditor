@@ -85,7 +85,7 @@ class Editor {
         if(position==0 && node>0){
             String prev=l.get(node-1);
             position=prev.length();
-            prev.append(s);
+            l.set(node-1, prev + s);
             l.remove(node);
         }
         else if(position>0){
