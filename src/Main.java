@@ -77,7 +77,7 @@ class Editor {
         if(s.length()==0) s.append(input);
         else String nuevo = s.substring(0, position) + input + s.substring(position);
         l.set(node, nuevo);
-    position += input.length();
+        position += input.length();
         position+=input.length();
     }
     public void delete() {
@@ -89,7 +89,8 @@ class Editor {
             l.remove(node);
         }
         else if(position>0){
-            s.delete(position-1,position);
+            String nuevo = s.substring(0, position-1) + s.substring(position);
+            l.set(node, nuevo);
             position--;
         }
     }
