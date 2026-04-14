@@ -75,7 +75,9 @@ class Editor {
     public void insert(String input) {
         String s=l.get(node);
         if(s.length()==0) s.append(input);
-        else s.insert(position,input);
+        else String nuevo = s.substring(0, position) + input + s.substring(position);
+        l.set(node, nuevo);
+    position += input.length();
         position+=input.length();
     }
     public void delete() {
